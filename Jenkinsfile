@@ -1,5 +1,6 @@
-node{
-     agent {
+
+pipeline {
+    agent {
         docker { image 'node:16.13.1-alpine' }
     }
     stages {
@@ -9,7 +10,9 @@ node{
             }
         }
     }
-    
+}
+
+node{
     stage('Checkout'){
         git branch:'main', url: 'https://github.com/jagadish1209/AngularCICDDockerSample.git'
     }

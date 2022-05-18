@@ -8,6 +8,6 @@ node{
     }
 
     stage("Build"){
-        sh "npm run build"
+        sh "ng build"
     }
 }

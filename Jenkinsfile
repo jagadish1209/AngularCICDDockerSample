@@ -7,7 +7,7 @@ node{
         sh "npm install"
     }
 
-    // stage("Build"){
-    //     sh "ng build"
-    // }
+    stage("Build"){
+        sh "ng build"
+    }
 }

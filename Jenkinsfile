@@ -8,76 +8,44 @@ node{
         sh "npm install"
     }
 
+    stage("TEST"){
+      steps{
+        echo "insert your testing here"
+      }
+    }
+
     stage("Build"){
         sh "npm run build"
     }
-}
 
-pipeline {
-  agent none
-  stages {
-    stage('Fetch dependencies') {
-      agent {
-        docker 'circleci/node:9.3-stretch-browsers'
-      }
-      steps {
-        sh 'yarn'
-        stash includes: 'node_modules/', name: 'node_modules'
+    stage("BUILD APP"){
+      steps{
+        sh "node_modules/.bin/ng build --prod"
       }
     }
-    // stage('Lint') {
-    //   agent {
-    //     docker 'circleci/node:9.3-stretch-browsers'
-    //   }
-    //   steps {
-    //     unstash 'node_modules'
-    //     sh 'yarn lint'
-    //   }
-    // }
-    // stage('Unit Test') {
-    //   agent {
-    //     docker 'circleci/node:9.3-stretch-browsers'
-    //   }
-    //   steps {
-    //     unstash 'node_modules'
-    //     sh 'yarn test:ci'
-    //     junit 'reports/**/*.xml'
-    //   }
-    // }
-    // stage('E2E Test') {
-    //   agent {
-    //     docker 'circleci/node:9.3-stretch-browsers'
-    //   }
-    //   steps {
-    //     unstash 'node_modules'
-    //     sh 'mkdir -p reports'
-    //     sh 'yarn e2e:pre-ci'
-    //     sh 'yarn e2e:ci'
-    //     sh 'yarn e2e:post-ci'
-    //     junit 'reports/**/*.xml'
-    //   }
-    // }
-    // stage('Compile') {
-    //   agent {
-    //     docker 'circleci/node:9.3-stretch-browsers'
-    //   }
-    //   steps {
-    //     unstash 'node_modules'
-    //     sh 'yarn build:prod'
-    //     stash includes: 'dist/', name: 'dist'
-    //   }
-    // }
-    // stage('Build and Push Docker Image') {
-    //   agent any
-    //   environment {
-    //     DOCKER_PUSH = credentials('docker_push')
-    //   }
-    //   steps {
-    //     unstash 'dist'
-    //     sh 'docker build -t $DOCKER_PUSH_URL/AngularCICDSample .'
-    //     sh 'docker login -u $DOCKER_PUSH_USR -p $DOCKER_PUSH_PSW $DOCKER_PUSH_URL'
-    //     sh 'docker push $DOCKER_PUSH_URL/AngularCICDSample'
-    //   }
-    // }
-  }
+
+    stage("BUILD DOCKER"){
+      steps{
+        script{
+          dockerImageBuild= docker.build registry + ":latest"
+        }
+      }
+    }
+
+    stage("DEPLOY DOCKER") {
+      steps {
+          script {
+            docker.withRegistry('', registryCredential) {
+              dockerImageBuild.push()
+            }
+         }
+      }
+   }
+
+    stage("DEPLOY & ACTIVATE") {
+      steps {
+        echo 'this part will differ depending on setup'
+      }
+    }
 }
+

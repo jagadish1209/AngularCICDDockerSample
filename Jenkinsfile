@@ -9,9 +9,7 @@ node{
     }
 
     stage("TEST"){
-      steps{
         echo "insert your testing here"
-      }
     }
 
     stage("Build"){

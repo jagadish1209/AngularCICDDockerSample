@@ -1,5 +1,7 @@
 
-node{
+pipeline{
+  agent any
+  stages{
     stage('Checkout'){
         git branch:'main', url: 'https://github.com/jagadish1209/AngularCICDDockerSample.git'
     }
@@ -47,5 +49,6 @@ node{
         echo 'this part will differ depending on setup'
       }
     }
+  }
 }
 

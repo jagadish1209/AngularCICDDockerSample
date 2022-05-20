@@ -21,4 +21,4 @@
 FROM nginx:alpine
 
 # COPY --from=node /app/dist/init /usr/share/nginx/html
-COPY /dist/AngularCICDSample-PipeLine /usr/share/nginx/html
+COPY /dist/SampleAngularProject /usr/share/nginx/html

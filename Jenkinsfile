@@ -33,7 +33,7 @@ node{
     }
 
     stage("Run Docker Container"){
-        sh 'docker run -d -p 81:81 jagadish1209/angularcicdsampledocker:latest'
+        sh 'docker run -d -p 80:4200 jagadish1209/angularcicdsampledocker:latest'
     }
     
 }

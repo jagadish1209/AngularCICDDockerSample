@@ -25,16 +25,16 @@ node{
     }
 
     stage("Docker push ang Tag"){
-       
             sh 'docker push jagadish1209/angularcicdsampledocker:latest'
     }
 
-    stage("Run Docker Container"){
-        sh 'docker run -d -p 80:80 jagadish1209/angularcicdsampledocker:latest'
+    stage("Dockers List"){
+        sh "docker ps"
     }
 
-
-   
+    stage("Run Docker Container"){
+        sh 'docker run -d -p 81:81 jagadish1209/angularcicdsampledocker:latest'
+    }
     
 }
 

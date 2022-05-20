@@ -20,9 +20,9 @@ node{
          sh 'docker build -t angularcicdsampledocker:latest .'
     }
 
-    // stage("Docker Login"){
-    //     sh 'docker login'
-    // }
+    stage("Docker Login"){
+        sh 'docker login -u jagadish1209 -p Java!@#2009'
+    }
 
     stage("Docker push ang Tag"){
         sh 'docker push angularcicdsampledocker:latest'

@@ -25,7 +25,7 @@ node{
     }
 
     stage("Docker push ang Tag"){
-        withCredentials([usernamePassword(credentialsId: 'jagadish1209', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
+        withCredentials([usernamePassword(credentialsId: 'jagadish1209', passwordVariable: 'a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8', usernameVariable: 'jagadish1209')]) 
         {
             sh "docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8"
             sh 'docker push angularcicdsampledocker:latest'

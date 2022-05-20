@@ -20,7 +20,11 @@ node{
          sh 'docker build -t angularcicdsampledocker:latest .'
     }
 
-    stage("Docker push anf Tag"){
+    stage("Docker Login"){
+        sh 'docker login'
+    }
+
+    stage("Docker push ang Tag"){
         sh 'docker push angularcicdsampledocker:latest'
     }
 

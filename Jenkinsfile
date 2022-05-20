@@ -25,12 +25,10 @@ node{
     }
 
     stage("Docker push ang Tag"){
-        sh 'docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8'
         sh 'docker push angularcicdsampledocker:latest'
     }
 
     stage("Run Docker Container"){
-        sh 'docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8'
         sh 'docker run -d -p 80:80 angularcicdsampledocker:latest'
     }
 

@@ -17,7 +17,7 @@ node{
     }
 
     stage("Docker Build and Tag"){
-         sh 'docker build -t angularcicdsampledocker:latest .'
+         sh 'docker build -t jagadish1209/angularcicdsampledocker:latest .'
     }
 
     stage("Docker Login"){
@@ -25,15 +25,12 @@ node{
     }
 
     stage("Docker push ang Tag"){
-        withCredentials([usernamePassword(credentialsId: 'jagadish1209', passwordVariable: 'a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8', usernameVariable: 'jagadish1209')]) 
-        {
-            sh "docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8"
-            sh 'docker push angularcicdsampledocker:latest'
-        }
+       
+            sh 'docker push jagadish1209/angularcicdsampledocker:latest'
     }
 
     stage("Run Docker Container"){
-        sh 'docker run -d -p 80:80 angularcicdsampledocker:latest'
+        sh 'docker run -d -p 80:80 jagadish1209/angularcicdsampledocker:latest'
     }
 
 

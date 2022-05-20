@@ -17,8 +17,7 @@ node{
     // }
 
     stage("Docker Build and Tag"){
-         sh 'docker --version'
-         sh 'docker run hello-world'
+         sh 'docker build -t angularcicdsampledocker:latest .'
     }
 
 

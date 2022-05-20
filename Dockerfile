@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm install
 
-RUN ng build
+RUN node_modules/.bin/ng build
 
 
 
@@ -20,4 +20,5 @@ RUN ng build
 
 FROM nginx:alpine
 
-COPY --from=node /app/dist/init /usr/share/nginx/html
+# COPY --from=node /app/dist/init /usr/share/nginx/html
+COPY /dist/SampleAngularProject /usr/share/nginx/html

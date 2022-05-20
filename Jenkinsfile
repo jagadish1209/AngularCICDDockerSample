@@ -21,7 +21,7 @@ node{
     }
 
     stage("Docker Login"){
-        sh 'docker login -u jagadish1209 -p Java!@#2009'
+        sh 'docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8'
     }
 
     stage("Docker push ang Tag"){

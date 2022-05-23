@@ -22,3 +22,6 @@ FROM nginx:alpine
 
 # COPY --from=node /app/dist/init /usr/share/nginx/html
 COPY /dist/SampleAngularProject /usr/share/nginx/html
+
+# Expose port 4203
+EXPOSE 4203

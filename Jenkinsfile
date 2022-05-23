@@ -6,21 +6,23 @@ pipeline{
         dockerRun=""
     }
     agent any
-    stages('Checkout'){
-        steps{
-            git branch:'main', url: 'https://github.com/jagadish1209/AngularCICDDockerSample.git'
+    stages{
+        stage('Checkout'){
+            steps{
+                git branch:'main', url: 'https://github.com/jagadish1209/AngularCICDDockerSample.git'
+            }
         }
-    }
 
-    stage('Install node modules'){
-        steps{
+         stage('Install node modules'){
+            steps{
             sh "npm install"
+            }
         }
-    }
 
-    stage('Build'){
-        steps{
-            sh "npm run build-prod"
+        stage('Build'){
+            steps{
+                sh "npm run build-prod"
+            }
         }
     }
 }

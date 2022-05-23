@@ -15,13 +15,43 @@ pipeline{
 
          stage('Install node modules'){
             steps{
-            sh "npm install"
+                sh "npm install"
+            }
+        }
+
+        stage("TEST"){
+            steps{
+                echo "insert your testing here"
             }
         }
 
         stage('Build'){
             steps{
                 sh "npm run build-prod"
+            }
+        }
+
+        stage("Docker Build and Tag"){
+            steps{
+                sh 'docker build -t jagadish1209/angularcicdsampledocker:latest .'
+            }
+        }
+
+        stage("Docker Login"){
+            steps{
+                sh 'docker login -u jagadish1209 --password a2c7a1f8-f9a0-4946-a7a4-05e2a1bf0ae8'
+            }
+        }
+
+        stage("Docker push ang Tag"){
+            steps{
+                sh 'docker push jagadish1209/angularcicdsampledocker:latest'
+            }
+        }
+
+        stage("Run Docker Container"){
+            steps{
+                sh 'docker run -d -p 4203:4203 jagadish1209/angularcicdsampledocker:latest'
             }
         }
     }

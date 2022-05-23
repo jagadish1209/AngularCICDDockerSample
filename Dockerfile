@@ -11,11 +11,9 @@ WORKDIR /app
 
 COPY . .
 
-# RUN npm install
+RUN npm install
 
-RUN node_modules/.bin/ng build
-
-
+RUN npm run build
 
 #stage 2
 
